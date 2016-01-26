@@ -1,0 +1,48 @@
+Tasks that we need to do :
+
+figure out what kind of game we want to make?  RPG?  other?
+
+make a decision on what mechanics we will use for the game?  button mashing vs turn based encounters?  other?
+
+__will there be magic in our game?__
+
+open world vs level selection?
+
+sprites
+
+animations
+
+sound
+
+story / story line
+
+items
+     - types
+        - armor
+        - weapons
+        - other
+     - randomly generated
+     - user created?
+      - item crafting?
+
+enemies
+
+stats/ level management/ damage / etc
+
+inventory system
+
+ai for enemies
+
+map of world(s) / level layouts
+
+character creation
+
+network communication
+
+database system
+
+user authentication
+
+controls
+
+platforms?  pc only?  mobile/android version for a later release idea?
