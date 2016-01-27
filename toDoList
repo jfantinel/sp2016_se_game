@@ -1,33 +1,74 @@
 Tasks that we need to do :
 
-figure out what kind of game we want to make?  RPG?  other?
+figure out what kind of game we want to make?  RPG __
 
-make a decision on what mechanics we will use for the game?  button mashing vs turn based encounters?  other?
+make a decision on what mechanics we will use for the game?  ____turn based encounters____
 
-__will there be magic in our game?__
+open world vs level selection?  blend of open world that gets more difficult 
 
-open world vs level selection?
+game modes : world exploration, solo pve
+                              - group pve (zones/bosses/etc)
+                              - group pvp (arena/competitions/tournaments)
 
 sprites
 
-animations
+animations - alternating iamges as walking
+          - flashing screen / fade transitions for encounters and zone changes
 
 sound
 
 story / story line
+
+    - basic adventure story with ultimate bad guy to defeat
 
 items
      - types
         - armor
         - weapons
         - other
+     - slots 
+          - head
+          - chest
+          - legs
+          - boots
+          - gloves
+          - hand items
+     - qualities
+     - special abilities
      - randomly generated
      - user created?
       - item crafting?
 
-enemies
+
+enemies / npcs
+          - groupable npcs 
+
+group size :  4 
+
+group movement :  free for all, until someone attempts to enter a zone - then everyone is given an invitation to join
 
 stats/ level management/ damage / etc
+
+                    - stats 
+                         - strength
+                         - dexterity
+                         - constitution
+                         - intelligence
+                         - wisdom
+                         - luck
+                    - max level : 128
+                         - story : based on 20 level increments
+                    - on death : lose portion of gold and experience
+                              - reset location to last city
+
+
+character creation - select class and sex
+                         - classes : 
+                              - tank
+                              - stealth
+                              - magic
+                    - later release option : customize appearance of your sprite
+
 
 inventory system
 
@@ -35,14 +76,21 @@ ai for enemies
 
 map of world(s) / level layouts
 
-character creation
-
 network communication
+               - 
 
 database system
 
 user authentication
+               - initialy username and password in plaintext
+               - later we will use insanely sick encryption
 
 controls
+     - wasd movement
+     - mouse useage
+     - numpad
+     - "/" system
+     - keybinding menu
+     
 
-platforms?  pc only?  mobile/android version for a later release idea?
+platforms?  pc only, initially...  mobile/android version for a later release idea
