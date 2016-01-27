@@ -7,3 +7,7 @@ Database name: sql5104581
 Database user: sql5104581
 Database password: 8CHGkEPagu
 Port number: 3306
+
+
+Locations table columns:
+LevelRequierment, GlobalCoords, ImagePath, MusicPath, ItemTable, NPCTable, GroupRequierments, Name
