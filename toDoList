@@ -22,6 +22,10 @@ story / story line
     - basic adventure story with ultimate bad guy to defeat
 
 items
+      - level restrictions?
+      -trading system?
+          - forced balance?  maybe a double verification of a gift?
+          - free for all?
      - types
         - armor
         - weapons
@@ -42,6 +46,10 @@ items
 
 enemies / npcs
           - groupable npcs 
+          - enemies
+          - quest givers
+          - shop keepers
+          - others
 
 group size :  4 
 
@@ -71,6 +79,14 @@ character creation - select class and sex
 
 
 inventory system
+        - maximum number of slots
+        - different sized bags?
+        - measurable limit for items
+            - variable size of items?
+              - potion : 1 square?
+              - armor : 6 squares?
+              
+              
 
 ai for enemies
 
