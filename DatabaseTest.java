@@ -194,18 +194,16 @@ public class Main extends JFrame implements Runnable{
             }
             while(rs.next())
             {
-            	
-                // retrieve by column name
                 int value1 = rs.getInt("AccountNumber");
                 String value2 = rs.getString("Username");
                 String value3 = rs.getString("Password");
-                // displaying values:
+                
                 System.out.println("Account Number: "+ value1);
                 System.out.println("Username: "+ value2);
                 System.out.println("Password: "+ value3);
                 System.out.println();
             }
-            // cleaning up
+            //Closes the ResultSet/statement/connection we opened earlier
             rs.close();
             stmt.close();
             con.close();
