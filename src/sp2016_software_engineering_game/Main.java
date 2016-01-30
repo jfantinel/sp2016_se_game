@@ -124,11 +124,23 @@ public class Main extends JFrame implements Runnable{
 	 public void update()
 	 {
 	     me.Update();
-	 }	    
-
+	 }		 
+	 
+/*
 	 public static void main(String[] args) 
 	 {
 	     Main game = new Main();
 	     game.start();
 	 }
+*/	 
+	 
+///*
+ 	public static void main(String[] args) throws Exception {
+        ChatClient client = new ChatClient();
+        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        client.frame.setVisible(true);
+        client.run();
+    }
+ //*/
+ 	
 }
