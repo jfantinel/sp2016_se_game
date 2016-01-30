@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.*;
 import java.sql.*;
 
@@ -26,14 +27,19 @@ public class Main extends JFrame implements Runnable{
 	Thread thread;
 	Boolean running = false;
 	Boolean started = false;
+	static Boolean loginCorrect = false;
 	
 	Font normalfont = new Font("Arial", Font.BOLD, 20);
 	Font bigfont = new Font("Arial", Font.BOLD, 40);
 	
 	Player me;
+	
+	StateMachine gGameMode;
 
 	public Main(){
+		logIn();
 		me = new Player(this);
+		gGameMode = new StateMachine();
 		addKeyListener(new KeyListener(this, me));
 		setTitle("SoftwareEngineering Game");
 		setSize(WIDTH, HEIGHT);
@@ -128,19 +134,21 @@ public class Main extends JFrame implements Runnable{
 	    
 	 public void update()
 	 {
-	     me.Update();
+		 gGameMode.update();
+		 gGameMode.render();
 	 }	 
 	 
 	 public void initNewAccountMenu()
 	 {
 		 
 	 }
-
-	 public static void main(String[] args) 
+	 
+	 public Boolean logIn()
 	 {
 		 JTextField username = new JTextField();
 		 JTextField password = new JTextField();
          JOptionPane op = new JOptionPane();
+         int numFailedLoginAttempts = 0;
          final JComponent[] inputs = new JComponent[] {
                     new JLabel("Username"),
                     username,
@@ -150,14 +158,6 @@ public class Main extends JFrame implements Runnable{
          };
          
          JOptionPane.showMessageDialog(null, inputs);
-         
-         System.out.println("Player entered:");
-         System.out.println(username.getText());
-         System.out.println(password.getText());
-         System.out.println();
-         
-         Main game = new Main();
-         game.start();
           
          try {
                Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -174,7 +174,7 @@ public class Main extends JFrame implements Runnable{
                System.out.println("Error: unable to instantiate driver!");
                System.exit(3);
          }
-          
+         
          String URL = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5104581";
          String USER = "sql5104581";
          String PASS = "8CHGkEPagu";
@@ -188,22 +188,40 @@ public class Main extends JFrame implements Runnable{
             ResultSet rs = stmt.executeQuery(sql);
              
             //If there is no results for the entered username
-            if(!rs.next())
-            {
-            	//initNewAccountMenu();
+            if (!rs.next()) {
+              System.out.println("No account found with username: " + username.getText());
+              return false;
+              //Call a method that suggests the player to make a new account.
             }
+
+            //Set the ResultSet counter back to the beginning of the ResultSet
+            //This is necessary since the previous method moves the counter forward to
+            //check if the ResultSet is empty.
+            rs.beforeFirst();
             while(rs.next())
             {
-                int value1 = rs.getInt("AccountNumber");
-                String value2 = rs.getString("Username");
-                String value3 = rs.getString("Password");
-                
-                System.out.println("Account Number: "+ value1);
-                System.out.println("Username: "+ value2);
-                System.out.println("Password: "+ value3);
-                System.out.println();
+                int accountNumber = rs.getInt("AccountNumber");
+                String accountUsername = rs.getString("Username");
+                String accountPassword = rs.getString("Password");
+
+                if(username.getText().equals(accountUsername))
+                {
+                	if(password.getText().equals(accountPassword))
+                	{
+                		loginCorrect = true;
+                	}
+                	else
+                	{
+                		numFailedLoginAttempts++;
+                		/*
+                		 * Clear out password field
+                		 * leave username populated
+                		 * display message "Invalid login"
+                		 */
+                	}
+                }
             }
-            //Closes the ResultSet/statement/connection we opened earlier
+            // cleaning up
             rs.close();
             stmt.close();
             con.close();
@@ -233,5 +251,76 @@ public class Main extends JFrame implements Runnable{
                     e2.printStackTrace();
              }
          }
+         return true;
+	 }
+
+/*	 
+	 public static void main(String[] args) 
+	 {
+	      Main game = new Main();
+	      if(loginCorrect)
+	    	  game.start();
      }  
+*/	 
+
+///*
+	 public static void main(String[] args) {
+	        Scanner clientInput = new Scanner(System.in);
+	        ChatRoomClient client = new ChatRoomClient();
+	        String clientMessage;
+
+	        while(!ChatRoomClient.quit){
+	            clientMessage = clientInput.nextLine();	            
+	            if(clientMessage.equals("~quit")){
+	                    client.quit();
+	            } else if(clientMessage.equals("~connect")){
+	                System.out.println("Host Name: ");
+	                String hostName = clientInput.next();
+	                System.out.println("Port: ");
+	                int port = Integer.parseInt(clientInput.next());
+	                    client.connect(port, hostName); //I couldn't test weather this works on a non-local network or not
+	                    new Thread(client).start();     //but I'm 90% sure switching out host name for IP address will make it work
+	            } else {
+	                    System.out.println("Sent: " + clientMessage);
+	                    client.send(clientMessage);
+	            }
+	        }
+	       System.out.println("Good Bye!");
+	       clientInput.close();
+	    }
+//*/
+	 
+/*
+    public static void main(String [] args) throws IOException
+	{
+	   java.net.InetAddress addr = java.net.InetAddress.getLocalHost();
+	   String hostname = addr.getHostName();  //Honestly don't know what exactly this is, just stole it from Stackoverflow
+	   System.out.println("Hostname of system = " + hostname);
+	   System.out.println("Port = 6066");
+	   
+	   Scanner hostInput = new Scanner(System.in);//Scanner for user text input
+	   ChatRoomHost host = new ChatRoomHost(6066);//Implementing the Chat Room Host
+	   String hostMessage;
+        
+        while(!quit){// feel like it's pretty self explanatory from here
+        	hostMessage = hostInput.next();
+        	if(hostMessage.equals("~quit")){
+        		host.quit();
+        	} else if(hostMessage.equals("~connect")){
+        		host.connect();
+                new Thread(host).start();
+        		System.out.println("Connected");
+        	} else {
+        		System.out.println("Sent: " + hostMessage);
+        		host.send(hostMessage);
+        	}
+        }
+      System.out.println("Good Bye!");
+      hostInput.close();
+	}
+ */
+	 
+	 
 }
+
+
