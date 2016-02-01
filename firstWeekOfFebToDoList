@@ -1,0 +1,52 @@
+Step 0  -  agree on procedures for naming conventions, organization methods of files/methods/etc, use of git, 
+
+       - refactor, reorganize, and clean stuff up in general...
+
+
+Step 1  -   break up current working tasks into client side and server side
+
+Step 2  -  brainstorm lists of tasks for client and server side
+
+Step 3  -  identify tasks that need to be done first
+
+Step 4  - assign tasks to people/pairs and set times for people to work together.  Additionally schedule next meeting time for everyone 
+to get together and review progress.
+
+Step 5  -  repeat?
+
+
+
+
+Client side tasks :
+    launcher
+    init communication with server 
+    provide login screen/account creation scrren to user
+    send login info to server
+    provide char selection/creation screen
+    open map view
+    init chat
+    relay user input to server
+
+    to be continued....
+
+
+
+
+Server side tasks :
+    connect to database
+    start chat server
+    validate login info
+    send account info to client
+    provide map view data
+    handle chat traffic
+    process player actions
+    send notifications
+    notify admin of errors
+    admin tool menus
+    
+    
+    to be continued ...
+    
+
+
+
