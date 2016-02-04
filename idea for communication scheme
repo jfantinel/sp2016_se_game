@@ -1,0 +1,23 @@
+preface messages sent from client to server with a word and a colon ":" that specifies which kind of message is being sent.  
+Following the colon will be the payload of the message with each value being seperated by a space " " ...
+
+login request   "LOGIN:<username> <password>"  replacing <username> and <password> with the values entered in the form for the fields. :/
+
+account creation "CREATEACCOUNT:<username> ...."
+
+char creation "CREATECHAR:<char name> <class> <sex> <stat1> <stat2> ...."
+
+char update (most normal messages sent from client to server and vice versa...  includes stats, location, inventory, and equipped items)
+
+chat messages ....
+
+      whisper
+      group
+      local
+      world
+      guild
+      zone
+
+
+
+
