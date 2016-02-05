@@ -1,0 +1,149 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.*;
+import java.sql.*;
+import java.lang.*;
+
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+
+public class DatabaseConnect {
+	
+	public DatabaseConnect(){
+		
+	}
+
+	public void init(){
+    try {
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+  }
+  catch(ClassNotFoundException ex) {
+        System.out.println("Error: unable to load driver class!");
+        System.exit(1);
+  }
+  catch(IllegalAccessException ex1) {
+        System.out.println("Error: access problem while loading!");
+        System.exit(2);
+  }
+  catch(InstantiationException ex2) {
+        System.out.println("Error: unable to instantiate driver!");
+        System.exit(3);
+  }
+  
+  String URL = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5104581";
+  String USER = "sql5104581";
+  String PASS = "8CHGkEPagu";
+  Connection con = null;
+  Statement stmt = null;
+  try
+  {
+     con = DriverManager.getConnection(URL, USER, PASS);
+     System.out.println("Connected to database");
+     stmt = con.createStatement();String sql;
+//     sql = "SELECT * from AccountsTable where Username = \'" + username.getText() + "\';";
+//     ResultSet rs = stmt.executeQuery(sql);
+      
+     //If there is no results for the entered username
+//     if (!rs.next()) {
+//       System.out.println("No account found with username: " + username.getText());
+//       return false;
+//       //Call a method that suggests the player to make a new account.
+//     }
+
+//     //Set the ResultSet counter back to the beginning of the ResultSet
+//     //This is necessary since the previous method moves the counter forward to
+//     //check if the ResultSet is empty.
+//     rs.beforeFirst();
+//     while(rs.next())
+//     {
+//         int accountNumber = rs.getInt("AccountNumber");
+//         String accountUsername = rs.getString("Username");
+//         String accountPassword = rs.getString("Password");
+//
+//         if(username.getText().equals(accountUsername))
+//         {
+//         	if(password.getText().equals(accountPassword))
+//         	{
+//         		loginCorrect = true;
+//         	}
+//         	else
+//         	{
+//         		numFailedLoginAttempts++;
+//         		/*
+//         		 * Clear out password field
+//         		 * leave username populated
+//         		 * display message "Invalid login"
+//         		 */
+//         	}
+//         }
+//     }
+//     // cleaning up
+//     rs.close();
+//     stmt.close();
+//     con.close();
+  } 
+  catch (SQLException e) {
+     e.printStackTrace();
+  }
+  catch (Exception e1) {
+      e1.printStackTrace();
+  }
+  finally
+  {  
+      //closing the resources in case they weren't closed earlier
+      try {
+      if (stmt != null)
+              stmt.close();
+      }
+      catch (SQLException e2) {
+         e2.printStackTrace();
+      }
+      try {
+          if (con != null) {
+              con.close();
+           }
+      } 
+      catch (SQLException e2) {
+             e2.printStackTrace();
+      }
+  }
+//  return true;
+
+	
+	
+
+//
+//public Boolean logIn()
+//{
+//	 JTextField username = new JTextField();
+//	 JTextField password = new JTextField();
+//    JOptionPane op = new JOptionPane();
+//    int numFailedLoginAttempts = 0;
+//    final JComponent[] inputs = new JComponent[] {
+//               new JLabel("Username"),
+//               username,
+//               
+//               new JLabel("Password"),
+//               password
+//    };
+//    
+//    JOptionPane.showMessageDialog(null, inputs);
+     
+//}
+
+  
+	}
+  
+  
+	}	
+	
+
+
