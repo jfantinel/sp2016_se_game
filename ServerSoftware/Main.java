@@ -1,9 +1,17 @@
 import java.net.*;
+import java.sql.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class Main {
 	
 	static ChatServer cs = new ChatServer();
+	static DatabaseConnect db = new DatabaseConnect();
 	
 	public Main()
 	{
@@ -16,6 +24,12 @@ public class Main {
 		cs.init(options);
 	}
 
+	public static void initDatabaseConnect()
+	{
+		db.init();
+	}
+	
+	
 	/*
 	 * 	Temporarily just having an infinite loop in the main
 	 *	method running the server until the program terminates
@@ -37,5 +51,6 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception{
 		initChatServer();
+		initDatabaseConnect();
 	}
 }
